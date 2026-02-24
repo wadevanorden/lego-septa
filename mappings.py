@@ -17,13 +17,13 @@ STOPS_TO_PINS = {
     "West Trenton": 24,
     "Fox Chase": 26,
     "North Philadelphia": 27,
-    "Wawa": 2,
-    "Newark DE": 4,
-    "Wilmington": 17,
-    "Airport": 1,
-    "Marcus Hook": 28,
-    "Thorndale": 38,
-    "Wayne Junction": 35,
+    "Wawa": 28,
+    "Newark DE": 29,
+    "Wilmington": 31,
+    "Airport": 32,
+    "Marcus Hook": 33,
+    "Thorndale": 35,
+    "Wayne Junction": 36,
     "Trenton": 37
 }
 
