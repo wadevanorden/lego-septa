@@ -9,7 +9,7 @@ def main():
     regionalRails = getRegionalRails()
     stopStatus = findStopStatuses(regionalRails)
     setLights(stopStatus)
-    time.sleep(5)
+    time.sleep(30)
 
 def getRegionalRails():
     response = requests.get('https://api.septa.org/api/TrainView/')
