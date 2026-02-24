@@ -21,7 +21,7 @@ STOPS_TO_PINS = {
     "Newark DE": 4,
     "Wilmington": 17,
     "Airport": 1,
-    "Marcus Hook": 40,
+    "Marcus Hook": 28,
     "Thorndale": 38,
     "Wayne Junction": 35,
     "Trenton": 37
