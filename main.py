@@ -53,6 +53,7 @@ def setLights(stopStatus):
         if stop in AIRPORT_STOPS or stop in NORTH_PHILLY_STOPS:
             continue
         else:
+            print(f"Setting {stop} to {stopStatus.get(stop, 0)}")
             if stopStatus.get(stop, 0) == 2:
                 LED(pin).on()
             elif stopStatus.get(stop, 0) == 1:
