@@ -20,8 +20,8 @@ STOPS_TO_PINS = {
     "Wawa": 2,
     "Newark DE": 4,
     "Wilmington": 17,
-    "Marcus Hook": 40,
     "Airport": 1,
+    "Marcus Hook": 40,
     "Thorndale": 38,
     "Wayne Junction": 35,
     "Trenton": 37
