@@ -49,7 +49,16 @@ def setLights(stopStatus):
     for stop in NORTH_PHILLY_STOPS:
         northPhillyValue = max(stopStatus.get(stop), northPhillyValue)
 
-    
+    for stop, pin in STOPS_TO_PINS.items():
+        if stop in AIRPORT_STOPS or stop in NORTH_PHILLY_STOPS:
+            continue
+        else:
+            if stopStatus.get(stop, 0) == 2:
+                LED(pin).on()
+            elif stopStatus.get(stop, 0) == 1:
+                LED(pin).blink(on_time=0.5, off_time=0.5)
+            else:
+                LED(pin).off()
 
     if airportValue == 2:
         LED(STOPS_TO_PINS["Airport"]).on()
