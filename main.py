@@ -1,3 +1,5 @@
+from time import time
+
 import requests
 from gpiozero import LED
 
@@ -7,6 +9,7 @@ def main():
     regionalRails = getRegionalRails()
     stopStatus = findStopStatuses(regionalRails)
     setLights(stopStatus)
+    time.sleep(5)
 
 def getRegionalRails():
     response = requests.get('https://api.septa.org/api/TrainView/')
