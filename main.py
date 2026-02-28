@@ -5,6 +5,9 @@ from gpiozero import LED
 
 from mappings import AIRPORT_STOPS, NORTH_PHILLY_STOPS, STOPS, STOPS_TO_PINS
 
+# Store LED objects to reuse them
+LEDS = {stop: LED(pin) for stop, pin in STOPS_TO_PINS.items()}
+
 def main():
     regionalRails = getRegionalRails()
     stopStatus = findStopStatuses(regionalRails)
@@ -13,8 +16,8 @@ def main():
     offLights()
 
 def offLights():
-    for stop, pin in STOPS_TO_PINS.items():
-        LED(pin).off()
+    for stop in STOPS_TO_PINS.keys():
+        LEDS[stop].off()
 
 def getRegionalRails():
     response = requests.get('https://api.septa.org/api/TrainView/')
@@ -57,30 +60,30 @@ def setLights(stopStatus):
     for stop in NORTH_PHILLY_STOPS:
         northPhillyValue = max(stopStatus.get(stop), northPhillyValue)
 
-    for stop, pin in STOPS_TO_PINS.items():
+    for stop in STOPS_TO_PINS.keys():
         if stop in AIRPORT_STOPS or stop in NORTH_PHILLY_STOPS:
             continue
         else:
             print(f"Setting {stop} to {stopStatus.get(stop, 0)}")
             if stopStatus.get(stop, 0) == 2:
-                LED(pin).on()
+                LEDS[stop].on()
             elif stopStatus.get(stop, 0) == 1:
-                LED(pin).on()
+                LEDS[stop].on()
             else:
-                LED(pin).off()
+                LEDS[stop].off()
 
     if airportValue == 2:
-        LED(STOPS_TO_PINS["Airport"]).on()
+        LEDS["Airport"].on()
     elif airportValue == 1:
-        LED(STOPS_TO_PINS["Airport"]).blink(on_time=0.5, off_time=0.5)
+        LEDS["Airport"].blink(on_time=0.5, off_time=0.5)
     else:
-        LED(STOPS_TO_PINS["Airport"]).off()
+        LEDS["Airport"].off()
     
     if northPhillyValue == 2:
-        LED(STOPS_TO_PINS["North Philadelphia"]).on()
+        LEDS["North Philadelphia"].on()
     elif northPhillyValue == 1:
-        LED(STOPS_TO_PINS["North Philadelphia"]).blink(on_time=0.5, off_time=0.5)
+        LEDS["North Philadelphia"].blink(on_time=0.5, off_time=0.5)
     else:
-        LED(STOPS_TO_PINS["North Philadelphia"]).off()
+        LEDS["North Philadelphia"].off()
 
 if __name__ == "__main__":    main()

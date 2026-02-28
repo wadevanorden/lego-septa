@@ -24,6 +24,7 @@ STOPS_TO_PINS = {
     "Marcus Hook": 22,
     "Thorndale": 23,
     "Wayne Junction": 24,
+    "Trenton": 25
 }
 
 STOPS = [
