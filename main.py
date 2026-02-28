@@ -11,8 +11,9 @@ LEDS = {stop: LED(pin) for stop, pin in STOPS_TO_PINS.items()}
 def main():
     regionalRails = getRegionalRails()
     stopStatus = findStopStatuses(regionalRails)
+    offLights()
     setLights(stopStatus)
-    time.sleep(30)
+    time.sleep(15)
     offLights()
 
 def offLights():
