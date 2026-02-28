@@ -9,12 +9,17 @@ from mappings import AIRPORT_STOPS, NORTH_PHILLY_STOPS, STOPS, STOPS_TO_PINS
 LEDS = {stop: LED(pin) for stop, pin in STOPS_TO_PINS.items()}
 
 def main():
-    regionalRails = getRegionalRails()
-    stopStatus = findStopStatuses(regionalRails)
-    offLights()
-    setLights(stopStatus)
-    time.sleep(15)
-    offLights()
+    try:
+        while True:
+            regionalRails = getRegionalRails()
+            stopStatus = findStopStatuses(regionalRails)
+            offLights()
+            setLights(stopStatus)
+            time.sleep(15)
+            offLights()
+    except KeyboardInterrupt:
+        print("\nExiting...")
+        offLights()
 
 def offLights():
     for stop in STOPS_TO_PINS.keys():
