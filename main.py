@@ -60,7 +60,7 @@ def setLights(stopStatus):
             if stopStatus.get(stop, 0) == 2:
                 LED(pin).on()
             elif stopStatus.get(stop, 0) == 1:
-                LED(pin).blink(on_time=0.5, off_time=0.5)
+                LED(pin).on()
             else:
                 LED(pin).off()
 
