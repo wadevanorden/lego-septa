@@ -10,6 +10,11 @@ def main():
     stopStatus = findStopStatuses(regionalRails)
     setLights(stopStatus)
     time.sleep(30)
+    offLights()
+
+def offLights():
+    for stop, pin in STOPS_TO_PINS.items():
+        LED(pin).off()
 
 def getRegionalRails():
     response = requests.get('https://api.septa.org/api/TrainView/')
