@@ -14,7 +14,7 @@ def main():
             regionalRails = getRegionalRails()
             stopStatus = findStopStatuses(regionalRails)
             setLights(stopStatus)
-            time.sleep(15)
+            time.sleep(30)
     except KeyboardInterrupt:
         print("\nExiting...")
         offLights()
