@@ -135,11 +135,15 @@ def main():
         print("Going crazy (SEPTA edition)...")
         while True:
             print("Highlight hubs!")
-            highlight_hubs(hold=5)
+            highlight_hubs(hold=10)
             time.sleep(0.3)
 
             print("All trains inward!")
             all_trains(delay=0.15)
+            time.sleep(0.4)
+
+            print("Transfer at 30th!")
+            transfer_at_30th(hops=6, delay=0.15)
             time.sleep(0.4)
 
             print("All trains outward!")
@@ -158,10 +162,6 @@ def main():
                     prev_stops[i] = curr
                 time.sleep(0.15)
             all_off()
-            time.sleep(0.4)
-
-            print("Transfer at 30th!")
-            transfer_at_30th(hops=6, delay=0.15)
             time.sleep(0.4)
 
             print("Random trains!")
