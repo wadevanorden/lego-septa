@@ -2,17 +2,9 @@ import time
 
 from gpiozero import LED
 
-from mappings import STOPS_TO_PINS, STOPS_TO_ROUTES, ROUTES
+from mappings import STOPS_TO_PINS, ROUTES
 
-# Build LED objects for each mapped stop
 LEDS = {stop: LED(pin) for stop, pin in STOPS_TO_PINS.items()}
-
-# Invert STOPS_TO_ROUTES to get ROUTES_TO_STOPS, preserving STOPS_TO_PINS order
-ROUTES_TO_STOPS = {route: [] for route in ROUTES}
-for stop in STOPS_TO_PINS:
-    for route in STOPS_TO_ROUTES.get(stop, []):
-        if route in ROUTES_TO_STOPS:
-            ROUTES_TO_STOPS[route].append(stop)
 
 ROUTE_NAMES = {
     "AIR": "Airport",
@@ -20,8 +12,8 @@ ROUTE_NAMES = {
     "CHW": "Chestnut Hill West",
     "CYN": "Cynwyd",
     "FOX": "Fox Chase",
-    "GLN": "Lansdale/Doylestown",
-    "LAN": "Lansdale/Doylestown",
+    "GLN": "Lansdale/Doylestown (Local)",
+    "LAN": "Lansdale/Doylestown (Express)",
     "MED": "Media/Wawa",
     "NOR": "Norristown",
     "PAO": "Paoli/Thorndale",
@@ -29,6 +21,24 @@ ROUTE_NAMES = {
     "WAR": "Warminster",
     "WIL": "Wilmington/Newark",
     "WTR": "West Trenton",
+}
+
+# Stops ordered from 30th Street outward along each route, based on the map
+ROUTE_STOP_ORDER = {
+    "AIR": ["30th", "Suburban Station", "Jefferson Station", "Airport"],
+    "CHE": ["30th", "Suburban Station", "Jefferson Station", "Wayne Junction", "Chestnut Hill East"],
+    "CHW": ["30th", "Suburban Station", "Jefferson Station", "North Broad", "Chestnut Hill West"],
+    "CYN": ["30th", "Suburban Station", "Cynwyd"],
+    "FOX": ["30th", "Suburban Station", "Jefferson Station", "Wayne Junction", "Fox Chase"],
+    "GLN": ["30th", "Suburban Station", "Jefferson Station", "North Broad", "Wayne Junction", "Glenside", "West Trenton", "Lansdale", "Doylestown"],
+    "LAN": ["30th", "Suburban Station", "Jefferson Station", "North Broad", "North Philadelphia", "Wayne Junction", "Glenside", "Lansdale", "Doylestown"],
+    "MED": ["30th", "Suburban Station", "Jefferson Station", "Wawa"],
+    "NOR": ["30th", "Suburban Station", "Jefferson Station", "North Broad", "Norristown"],
+    "PAO": ["30th", "Bryn Mawr", "Paoli", "Malvern", "Thorndale"],
+    "TRE": ["30th", "Suburban Station", "Jefferson Station", "North Philadelphia", "Trenton"],
+    "WAR": ["30th", "Suburban Station", "Jefferson Station", "Wayne Junction", "Glenside", "Warminster"],
+    "WIL": ["30th", "Suburban Station", "Jefferson Station", "Marcus Hook", "Wilmington", "Newark DE"],
+    "WTR": ["30th", "Suburban Station", "Jefferson Station", "West Trenton"],
 }
 
 def all_off():
