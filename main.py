@@ -50,9 +50,9 @@ def findStopStatuses(regionalRails):
             continue
         
         for stop in STOPS:
-            if train['nextstop'] in stop:
+            if stop in train['nextstop']:
                 stopStatus[stop] = 1
-            if train['currentstop'] in stop:
+            if stop in train['currentstop']:
                 stopStatus[stop] = 2
     
     return stopStatus
