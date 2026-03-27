@@ -45,7 +45,7 @@ def all_off():
     for led in LEDS.values():
         led.off()
 
-def display_route(route, step_delay=0.4, hold=1.0):
+def display_route(route, step_delay=0.4, hold=1.5):
     stops = ROUTE_STOP_ORDER[route]
     name = ROUTE_NAMES.get(route, route)
     print(f"Route: {name} ({route}) — {len(stops)} stops")
