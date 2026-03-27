@@ -10,6 +10,8 @@ LEDS = {stop: LED(pin) for stop, pin in STOPS_TO_PINS.items()}
 # Stations shared by nearly every route — the downtown spine
 DOWNTOWN_CORRIDOR = ["30th", "Suburban Station", "Jefferson Station"]
 
+HUBS = ["30th", "Suburban Station", "Jefferson Station", "Thorndale", "Cynwyd", "Norristown", "Chestnut Hill West", "Chestnut Hill East", "Doylestown", "Warminster", "West Trenton", "Fox Chase", "Airport", "Wawa", "Newark DE", "Trenton"]
+
 # Secondary interchange hubs
 SECONDARY_HUBS = ["Wayne Junction", "Glenside", "North Broad", "North Philadelphia"]
 
@@ -61,12 +63,10 @@ def off_group(stops, delay=0.0):
         time.sleep(delay)
 
 def highlight_hubs(hold=1.5):
-    """Illuminate hubs in layers: downtown first, then secondary hubs."""
+    """Light up all hub stations."""
     all_off()
-    light_group(DOWNTOWN_CORRIDOR, 0.5)
-    light_group(SECONDARY_HUBS, hold)
-    off_group(SECONDARY_HUBS, 0.4)
-    off_group(DOWNTOWN_CORRIDOR)
+    light_group(DOWNTOWN_CORRIDOR + SECONDARY_HUBS, hold)
+    off_group(DOWNTOWN_CORRIDOR + SECONDARY_HUBS)
 
 def diverge(step_delay=0.5, hold=0.8):
     """Energy radiates outward from downtown through hubs to termini."""
