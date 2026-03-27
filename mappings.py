@@ -88,3 +88,32 @@ ROUTES = [
     "WIL",
     "WTR"
 ]
+
+STOPS_TO_ROUTES = {
+    "Thorndale": ["PAO"],
+    "Malvern": ["PAO"],
+    "Paoli": ["PAO"],
+    "Bryn Mawr": ["PAO"],
+    "30th": ["PAO", "CHE", "CHW", "CYN", "FOX", "GLN", "LAN", "MED", "NOR", "TRE", "WAR", "WIL", "WTR", "AIR"],
+    "Suburban Station": ["PAO", "CHE", "CHW", "CYN", "FOX", "GLN", "LAN", "MED", "NOR", "TRE", "WAR", "WIL", "WTR", "AIR"],
+    "Jefferson Station": ["PAO", "CHE", "CHW", "FOX", "GLN", "LAN", "MED", "NOR", "TRE", "WAR", "WIL", "WTR", "AIR"],
+    "North Broad": ["CHW", "GLN", "LAN", "NOR"],
+    "Cynwyd": ["CYN"],
+    "Norristown": ["NOR"],
+    "Chestnut Hill West": ["CHW"],
+    "Chestnut Hill East": ["CHE"],
+    "Doylestown": ["GLN", "LAN"],
+    "Lansdale": ["GLN", "LAN"],
+    "Warminster": ["WAR"],
+    "Glenside": ["GLN", "LAN", "WAR"],
+    "West Trenton": ["WTR", "GLN"],
+    "Fox Chase": ["FOX"],
+    "North Philadelphia": ["CHW", "LAN", "TRE"],
+    "Wawa": ["MED"],
+    "Newark DE": ["WIL"],
+    "Wilmington": ["WIL"],
+    "Marcus Hook": ["WIL"],
+    "Airport": ["AIR"],
+    "Wayne Junction": ["CHE", "FOX", "GLN", "LAN", "WAR"],
+    "Trenton": ["TRE"]
+}
