@@ -60,11 +60,13 @@ def off_group(stops, delay=0.0):
     if delay:
         time.sleep(delay)
 
-def hub_pulse(flashes=6, delay=0.12):
-    """Strobe only the downtown corridor — the beating heart of the network."""
-    for _ in range(flashes):
-        light_group(DOWNTOWN_CORRIDOR, delay)
-        off_group(DOWNTOWN_CORRIDOR, delay)
+def highlight_hubs(hold=1.5):
+    """Illuminate hubs in layers: downtown first, then secondary hubs."""
+    all_off()
+    light_group(DOWNTOWN_CORRIDOR, 0.5)
+    light_group(SECONDARY_HUBS, hold)
+    off_group(SECONDARY_HUBS, 0.4)
+    off_group(DOWNTOWN_CORRIDOR)
 
 def diverge(step_delay=0.5, hold=0.8):
     """Energy radiates outward from downtown through hubs to termini."""
@@ -121,16 +123,23 @@ def all_trains(delay=0.12):
     # Ensure all off after
     all_off()
 
-def strobe_hubs(flashes=16, delay=0.05):
-    """Strobe hubs and termini alternately."""
-    for _ in range(flashes):
-        light_group(DOWNTOWN_CORRIDOR + SECONDARY_HUBS)
-        off_group(TERMINI)
-        time.sleep(delay)
-        off_group(DOWNTOWN_CORRIDOR + SECONDARY_HUBS)
-        light_group(TERMINI)
-        time.sleep(delay)
+def transfer_at_30th(hops=6, delay=0.15):
+    """Train arrives at 30th, then repeatedly picks a random onward route and returns."""
     all_off()
+    # Arrive at 30th on a random inbound route
+    arrival = list(reversed(random.choice(ROUTES_INWARD)))  # outward → inward
+    train_run(arrival, delay)
+
+    used = None
+    for _ in range(hops):
+        # Pick a random route that doesn't immediately repeat
+        choices = [r for r in ROUTES_INWARD if r is not used]
+        route_out = random.choice(choices)
+        used = route_out
+        # Run outward from 30th (inward list reversed = outward)
+        train_run(list(reversed(route_out)), delay)
+        # Run back inward to 30th
+        train_run(route_out, delay)
 
 def random_train(duration=5, delay=0.15):
     """Random trains run on random routes for a given duration."""
@@ -145,8 +154,9 @@ def main():
     try:
         print("Going crazy (SEPTA edition)...")
         while True:
-            print("Hub pulse!")
-            hub_pulse(flashes=10, delay=0.1)
+            print("Highlight hubs!")
+            for _ in range(3):
+                highlight_hubs(hold=1.2)
             time.sleep(0.3)
 
             print("Diverge from downtown!")
@@ -179,9 +189,9 @@ def main():
             all_off()
             time.sleep(0.4)
 
-            print("Strobe hubs vs termini!")
-            strobe_hubs(flashes=20, delay=0.06)
-            time.sleep(0.3)
+            print("Transfer at 30th!")
+            transfer_at_30th(hops=6, delay=0.15)
+            time.sleep(0.4)
 
             print("Random trains!")
             random_train(duration=5, delay=0.12)
