@@ -135,7 +135,7 @@ def main():
         print("Going crazy (SEPTA edition)...")
         while True:
             print("Highlight hubs!")
-            highlight_hubs(hold=10)
+            highlight_hubs(hold=15)
             time.sleep(0.3)
 
             print("All trains inward!")
@@ -143,7 +143,7 @@ def main():
             time.sleep(0.4)
 
             print("Transfer at 30th!")
-            transfer_at_30th(hops=6, delay=0.15)
+            transfer_at_30th(hops=15, delay=0.15)
             time.sleep(0.4)
 
             print("All trains outward!")
@@ -165,7 +165,7 @@ def main():
             time.sleep(0.4)
 
             print("Random trains!")
-            random_train(duration=5, delay=0.12)
+            random_train(duration=10, delay=0.12)
 
     except KeyboardInterrupt:
         print("\nCalming down...")
