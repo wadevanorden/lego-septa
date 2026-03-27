@@ -46,11 +46,11 @@ def all_off():
         led.off()
 
 def display_route(route, step_delay=0.4, hold=1.0):
-    stops = ROUTES_TO_STOPS[route]
+    stops = ROUTE_STOP_ORDER[route]
     name = ROUTE_NAMES.get(route, route)
     print(f"Route: {name} ({route}) — {len(stops)} stops")
 
-    # Light up stops one at a time along the route
+    # Light up stops one at a time from 30th outward
     for stop in stops:
         LEDS[stop].on()
         time.sleep(step_delay)
@@ -58,8 +58,8 @@ def display_route(route, step_delay=0.4, hold=1.0):
     # Hold all on
     time.sleep(hold)
 
-    # Turn them off one at a time
-    for stop in stops:
+    # Turn them off retreating back toward 30th
+    for stop in reversed(stops):
         LEDS[stop].off()
         time.sleep(step_delay / 2)
 
