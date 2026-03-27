@@ -54,8 +54,8 @@ STOPS = [
     "Marcus Hook",
     "Airport Terminal A",
     "Airport Terminal B",
-    "Airport Terminal C & D",
-    "Airport Terminal E & F",
+    "Airport Terminal C D",
+    "Airport Terminal E F",
     "Wayne Junction",
     "Trenton"
 ]
@@ -63,8 +63,8 @@ STOPS = [
 AIRPORT_STOPS = [
     "Airport Terminal A",
     "Airport Terminal B",
-    "Airport Terminal C & D",
-    "Airport Terminal E & F"
+    "Airport Terminal C D",
+    "Airport Terminal E F"
 ]
 
 NORTH_PHILLY_STOPS = [
