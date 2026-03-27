@@ -62,11 +62,11 @@ def off_group(stops, delay=0.0):
     if delay:
         time.sleep(delay)
 
-def highlight_hubs(hold=1.5):
+def highlight_hubs(hold=3):
     """Light up all hub stations."""
     all_off()
-    light_group(DOWNTOWN_CORRIDOR + SECONDARY_HUBS, hold)
-    off_group(DOWNTOWN_CORRIDOR + SECONDARY_HUBS)
+    light_group(HUBS, hold)
+    off_group(HUBS)
 
 def diverge(step_delay=0.5, hold=0.8):
     """Energy radiates outward from downtown through hubs to termini."""
