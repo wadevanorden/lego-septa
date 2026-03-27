@@ -68,26 +68,6 @@ def highlight_hubs(hold=3):
     light_group(HUBS, hold)
     off_group(HUBS)
 
-def diverge(step_delay=0.5, hold=0.8):
-    """Energy radiates outward from downtown through hubs to termini."""
-    all_off()
-    light_group(DOWNTOWN_CORRIDOR, step_delay)
-    light_group(SECONDARY_HUBS, step_delay)
-    light_group(TERMINI, hold)
-    off_group(TERMINI, step_delay / 2)
-    off_group(SECONDARY_HUBS, step_delay / 2)
-    off_group(DOWNTOWN_CORRIDOR)
-
-def converge(step_delay=0.5, hold=0.8):
-    """All termini light up and energy flows inward to downtown."""
-    all_off()
-    light_group(TERMINI, step_delay)
-    light_group(SECONDARY_HUBS, step_delay)
-    light_group(DOWNTOWN_CORRIDOR, hold)
-    off_group(DOWNTOWN_CORRIDOR, step_delay / 2)
-    off_group(SECONDARY_HUBS, step_delay / 2)
-    off_group(TERMINI)
-
 def train_run(route_stops, delay=0.15):
     """Simulate a single train moving along a route — one LED at a time."""
     prev = None
@@ -156,16 +136,8 @@ def main():
         while True:
             print("Highlight hubs!")
             for _ in range(3):
-                highlight_hubs(hold=1.2)
+                highlight_hubs(hold=3)
             time.sleep(0.3)
-
-            print("Diverge from downtown!")
-            for _ in range(3):
-                diverge(step_delay=0.4, hold=0.6)
-
-            print("Converge to downtown!")
-            for _ in range(3):
-                converge(step_delay=0.4, hold=0.6)
 
             print("All trains inward!")
             all_trains(delay=0.15)
@@ -195,11 +167,6 @@ def main():
 
             print("Random trains!")
             random_train(duration=5, delay=0.12)
-
-            print("Ping pong — diverge/converge!")
-            for _ in range(4):
-                diverge(step_delay=0.25, hold=0.3)
-                converge(step_delay=0.25, hold=0.3)
 
     except KeyboardInterrupt:
         print("\nCalming down...")
