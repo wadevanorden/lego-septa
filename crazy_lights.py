@@ -135,8 +135,7 @@ def main():
         print("Going crazy (SEPTA edition)...")
         while True:
             print("Highlight hubs!")
-            for _ in range(3):
-                highlight_hubs(hold=5)
+            highlight_hubs(hold=5)
             time.sleep(0.3)
 
             print("All trains inward!")
